@@ -76,7 +76,7 @@ const blogConfig = {
 
 	/** Twikoo 评论系统（未部署，留空即不启用） */
 	twikoo: {
-		envId: '',
+		envId: 'http://8.140.208.196/twikoo/',
 		preload: '',
 	},
 }
