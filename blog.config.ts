@@ -1,22 +1,22 @@
 import type { FeedEntry } from './app/types/feed'
 
 const basicConfig = {
-	title: 'Charnobly 的博客',
+	title: '墨芯Maŝino',
 	subtitle: '',
 	// 长 description 利好于 SEO
-	description: 'Charnobly 的个人博客，记录技术与生活。',
+	description: '墨芯Maŝino —— Charnobly 的个人博客，记录技术与生活。',
 	author: {
 		name: 'Charnobly',
-		avatar: 'https://weavatar.com/avatar/charnobly?s=160',
-		email: '',
-		homepage: '',
+		avatar: 'https://avatars-githubusercontent-webp.webp.se/stellarum-J?s=160',
+		email: 'stellarumju@outlook.com',
+		homepage: 'https://github.com/stellarum-J',
 	},
 	copyright: {
 		abbr: 'CC BY-NC-SA 4.0',
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: 'https://weavatar.com/avatar/charnobly?s=64',
+	favicon: 'https://avatars-githubusercontent-webp.webp.se/stellarum-J?s=64',
 	language: 'zh-CN',
 	timeEstablished: '2026-09-04',
 	timeZone: 'Asia/Shanghai',
@@ -84,7 +84,7 @@ const blogConfig = {
 /** 用于生成 OPML 和友链页面配置 */
 export const myFeed: FeedEntry = {
 	author: blogConfig.author.name,
-	sitenick: 'Charnobly',
+	sitenick: '墨芯Maŝino',
 	title: blogConfig.title,
 	desc: blogConfig.subtitle || blogConfig.description,
 	link: blogConfig.url,

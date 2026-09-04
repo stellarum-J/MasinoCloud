@@ -79,7 +79,7 @@ export default defineAppConfig({
 
 	/** 左侧栏顶部 Logo */
 	header: {
-		logo: 'https://weavatar.com/avatar/charnobly?s=160',
+		logo: 'https://avatars-githubusercontent-webp.webp.se/stellarum-J?s=160',
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
