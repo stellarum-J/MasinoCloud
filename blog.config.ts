@@ -1,12 +1,12 @@
 import type { FeedEntry } from './app/types/feed'
 
 const basicConfig = {
-	title: '墨芯Maŝino',
+	title: 'Maŝino',
 	subtitle: '',
 	// 长 description 利好于 SEO
-	description: '墨芯Maŝino —— Charnobly 的个人博客，记录技术与生活。',
+	description: '墨芯Maŝino 的个人博客，记录技术与生活。',
 	author: {
-		name: 'Charnobly',
+		name: '墨芯',
 		avatar: 'https://avatars-githubusercontent-webp.webp.se/stellarum-J?s=160',
 		email: 'stellarumju@outlook.com',
 		homepage: 'https://github.com/stellarum-J',
