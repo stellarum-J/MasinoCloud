@@ -72,9 +72,12 @@ const blogConfig = {
 	},
 
 	/** 向 <head> 中添加脚本 */
-	scripts: [],
+	scripts: [
+		// Twikoo 评论客户端（1.7.20，同源自托管于 public/，与后端版本保持一致）
+		{ src: '/twikoo.all.min.js' },
+	],
 
-	/** Twikoo 评论系统（未部署，留空即不启用） */
+	/** Twikoo 评论系统（后端为自建 Docker，Nginx 反代于 /twikoo/） */
 	twikoo: {
 		envId: 'http://8.140.208.196/twikoo/',
 		preload: '',
