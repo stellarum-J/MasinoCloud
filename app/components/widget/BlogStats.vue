@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { UtilDate } from '#components'
 
-const appConfig = useAppConfig()
 const runtimeConfig = useRuntimeConfig()
 
 // 响应头不正确时，stats.value 可能会是字符串，首次属性访问可能为 undefined
@@ -14,10 +13,13 @@ const yearlyTip = computed(() => Object
 	.join('\n') || '数据获取失败',
 )
 
+// 精确到分钟：博客首次公网可访问的时刻（2026-09-04 20:31，安全组放行后的首个 200）
+const establishedAt = '2026-09-04T20:31'
+
 const blogStats = [{
 	label: '运营时长',
-	value: timeElapse(appConfig.timeEstablished),
-	tip: `博客于${appConfig.timeEstablished}上线`,
+	value: timeElapse(establishedAt),
+	tip: '博客于 2026-09-04 20:31 上线',
 }, {
 	label: '上次更新',
 	value: () => h(UtilDate, {

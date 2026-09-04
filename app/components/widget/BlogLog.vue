@@ -2,10 +2,9 @@
 const { timeEstablished } = useAppConfig()
 
 const blogLog = [
-	{ label: '2025-07-26', value: '重构到 Nuxt 4 + Nuxt Content v3，启用 zhilu.site 域名' },
-	{ label: '2024-08-11', value: '重构到 Nuxt 3 + Nuxt Content v2' },
-	{ label: '2023-05-24', value: '更换框架为 Hexo，升级博客' },
-	{ label: '2020-08-24', value: '使用 zhilu.cyou 域名' },
+	{ label: '2026-09-04', value: '阿里云 ECS 从零搭建：系统调优、Docker、Nginx、SSH 加固' },
+	{ label: '2026-09-04', value: '部署博客 Maŝino（blog-v3 主题）并上线' },
+	{ label: '2026-09-04', value: '接入自建 Twikoo 评论系统' },
 	{ label: timeEstablished, value: '发布第一篇文章' },
 ]
 </script>
