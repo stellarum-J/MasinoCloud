@@ -1,3 +1,4 @@
+import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { arch, env, version as nodeVersion, platform } from 'node:process'
 import { pathToFileURL } from 'node:url'
@@ -209,6 +210,28 @@ ${packageJson.homepage}
 			// 英文内容树 content/en/posts/** 对应 /en/** 路径（双语 P0）
 			else if (blogConfig.article.hidePostPrefix && path?.startsWith('/en/posts/'))
 				ctx.content.path = path.replace('/posts/', '/')
+		},
+
+		'prerender:routes': (ctx) => {
+			// 双语：为每篇中文文章与顶层内容页生成 /en/ 镜像路由（未翻译者由页面层回退为中文原稿并标注）
+			const enRoutes: string[] = []
+			const walk = (dir: string, base: string) => {
+				for (const entry of readdirSync(dir, { withFileTypes: true })) {
+					if (entry.name === 'previews' || entry.name === 'en')
+						continue
+					const rel = `${base}/${entry.name}`
+					if (entry.isDirectory())
+						walk(`${dir}/${entry.name}`, rel)
+					else if (entry.name.endsWith('.md'))
+						enRoutes.push(`/en${base}/${entry.name.slice(0, -3)}`)
+				}
+			}
+			walk('content/posts', '')
+			for (const entry of readdirSync('content', { withFileTypes: true })) {
+				if (entry.isFile() && entry.name.endsWith('.md'))
+					enRoutes.push(`/en/${entry.name.slice(0, -3)}`)
+			}
+			ctx.routes.push(...new Set(enRoutes))
 		},
 	},
 

@@ -7,9 +7,15 @@ const locale = computed<'zh' | 'en'>(() =>
 
 /** 计算目标语言的对应页面路径（文章 ↔ 对译文章；其余页面 ↔ 对应语言首页） */
 function counterpart(target: 'zh' | 'en') {
-	if (target === 'en')
-		return route.path === '/' ? '/en' : `/en${route.path}`
-	return (route.path === '/en' ? '/' : route.path.replace(/^\/en/, '')) || '/'
+	// 文章路径形如 /2026/foo 或 /en/2026/foo，存在镜像；其余页面切换语言时回到语言首页
+	if (target === 'en') {
+		if (route.path === '/')
+			return '/en'
+		return /^\d{4}\//.test(route.path.slice(1)) ? `/en${route.path}` : '/en'
+	}
+	if (route.path === '/en')
+		return '/'
+	return /^en\/\d{4}\//.test(route.path.slice(1)) ? route.path.replace(/^\/en/, '') : '/'
 }
 
 function switchTo(target: 'zh' | 'en') {
