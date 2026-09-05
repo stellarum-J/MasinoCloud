@@ -7,7 +7,8 @@ const { data: surrounds } = await useAsyncData(
 	`surround:${route.path}`,
 	() => queryCollectionItemSurroundings('content', route.path, { fields: ['date', 'title', 'type'] })
 		.order('date', 'ASC')
-		.where('stem', 'LIKE', `posts/%`),
+		// 英文文章的上下篇只在英文内容树内轮转
+		.where('stem', 'LIKE', route.path.startsWith('/en/') ? 'en/posts/%' : 'posts/%'),
 )
 
 const [prev = null, next = null] = surrounds.value ?? []

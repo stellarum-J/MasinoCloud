@@ -44,6 +44,7 @@ const debouncedSelection = refDebounced(text)
 
 	<footer class="sidebar-footer">
 		<BlogThemeToggle />
+		<BlogLanguageToggle />
 		<ZIconNavList :list="appConfig.footer.iconNav" />
 	</footer>
 </aside>

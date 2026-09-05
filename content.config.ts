@@ -25,6 +25,10 @@ export interface ArticleSchema {
 	draft?: boolean
 	permalink?: string
 
+	/** 语言与对译关联（双语 P0） */
+	lang?: 'zh' | 'en'
+	translationKey?: string
+
 	readingTime?: ReadTimeResults
 }
 
@@ -46,6 +50,8 @@ const articleSchema = z.object({
 	})).optional(),
 	draft: z.boolean().default(false),
 	permalink: z.string().optional(),
+	lang: z.enum(['zh', 'en']).optional(),
+	translationKey: z.string().optional(),
 
 	readingTime: z.object({
 		text: z.string(),
