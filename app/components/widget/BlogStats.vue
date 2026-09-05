@@ -12,7 +12,7 @@ const yearlyTip = computed(() => Object
 	.entries(stats.value?.annual || {})
 	.reverse()
 	.map(([year, item]) => locale.value === 'en'
-		? `${year}: ${item.posts} posts, ${formatNumber(item.words)} words`
+		? `${year}: ${item.posts} posts, ${formatNumber(item.words, 'en')} words`
 		: `${year}年：${item.posts}篇，${formatNumber(item.words)}字`)
 	.join('\n') || t('数据获取失败', 'Failed to load stats'),
 )
@@ -22,18 +22,19 @@ const establishedAt = '2026-09-04T20:31'
 
 const blogStats = [{
 	label: t('运营时长', 'Uptime'),
-	value: timeElapse(establishedAt),
+	value: computed(() => timeElapse(establishedAt, 2, locale.value)),
 	tip: t('博客于 2026-09-04 20:31 上线', 'Online since 2026-09-04 20:31'),
 }, {
 	label: t('上次更新', 'Last build'),
 	value: () => h(UtilDate, {
 		date: runtimeConfig.public.buildTime,
 		relative: true,
+		locale: locale.value === 'en' ? 'en-US' : 'zh-CN',
 		tipPrefix: locale.value === 'en' ? 'Built at' : '构建于',
 	}),
 }, {
 	label: t('总字数', 'Total words'),
-	value: computed(() => formatNumber(stats.value?.total?.words) || '--'),
+	value: computed(() => formatNumber(stats.value?.total?.words, locale.value) || '--'),
 	tip: yearlyTip,
 }]
 </script>

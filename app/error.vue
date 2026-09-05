@@ -4,6 +4,8 @@ import type { NuxtError } from '#app'
 defineProps<{
 	error: NuxtError & { url?: string }
 }>()
+
+const t = useT()
 </script>
 
 <template>
@@ -19,8 +21,8 @@ defineProps<{
 			:title="`[${error.status}] ${error.message}`"
 		>
 			<template #operation>
-				<ZButton text="返回主页" @click="clearError({ redirect: '/' })" />
-				<ZButton text="尝试忽略" @click="clearError()" />
+				<ZButton :text="t('返回主页', 'Back to home')" @click="clearError({ redirect: '/' })" />
+				<ZButton :text="t('尝试忽略', 'Try to ignore')" @click="clearError()" />
 			</template>
 		</ZError>
 	</div>

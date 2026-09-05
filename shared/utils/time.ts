@@ -39,28 +39,28 @@ export function isTimeDiffSignificant(
 }
 
 const timeIntervals = [
-	{ label: '世纪', threshold: 60 * 60 * 24 * 365.2422 * 100 },
-	{ label: '年', threshold: 60 * 60 * 24 * 365.2422 },
-	{ label: '个月', threshold: 60 * 60 * 24 * 30.44 },
-	{ label: '天', threshold: 60 * 60 * 24 },
-	{ label: '小时', threshold: 60 * 60 },
-	{ label: '分', threshold: 60 },
-	{ label: '秒', threshold: 1 },
+	{ label: '世纪', en: ' centuries', threshold: 60 * 60 * 24 * 365.2422 * 100 },
+	{ label: '年', en: 'y', threshold: 60 * 60 * 24 * 365.2422 },
+	{ label: '个月', en: 'mo', threshold: 60 * 60 * 24 * 30.44 },
+	{ label: '天', en: 'd', threshold: 60 * 60 * 24 },
+	{ label: '小时', en: 'h', threshold: 60 * 60 },
+	{ label: '分', en: 'min', threshold: 60 },
+	{ label: '秒', en: 's', threshold: 1 },
 ]
 
-export function timeElapse(date: string | Temporal.PlainDateTime, maxDepth = 2) {
+export function timeElapse(date: string | Temporal.PlainDateTime, maxDepth = 2, locale: 'zh' | 'en' = 'zh') {
 	let timeString = ''
 	let secRemained = Temporal.Now.plainDateTimeISO().since(date, { largestUnit: 'second' }).seconds
 	for (const interval of timeIntervals) {
 		const count = Math.floor(secRemained / interval.threshold)
 		if (count <= 0)
 			continue
-		timeString += `${count}${interval.label}`
+		timeString += `${count}${locale === 'en' ? interval.en : interval.label}`
 		secRemained -= count * interval.threshold
 		if (--maxDepth <= 0)
 			break
 	}
-	return timeString || '刚刚'
+	return timeString || (locale === 'en' ? 'just now' : '刚刚')
 }
 
 export function toInstantString(date: string | Temporal.ZonedDateTime) {

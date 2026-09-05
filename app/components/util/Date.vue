@@ -7,6 +7,8 @@ const props = withDefaults(defineProps<{
 	format?: dateTimeFormatOptions
 	absolute?: boolean
 	relative?: boolean
+	/** 传给 NuxtTime 的语言（相对时间文案），默认跟随浏览器 */
+	locale?: string
 	nospace?: boolean
 	tipFormat?: dateTimeFormatOptions
 	tipTransform?: (formattedDate: string) => string
@@ -53,6 +55,7 @@ const tooltip = computed(() => mounted.value && zdt.value
 		v-else
 		:datetime="toInstantString(zdt)"
 		:relative
+		:locale="props.locale"
 		:year="zdt.year === today.year ? undefined : '2-digit'"
 		month="long"
 		day="numeric"

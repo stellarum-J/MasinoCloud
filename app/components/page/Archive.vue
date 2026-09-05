@@ -10,6 +10,7 @@ const props = defineProps<{
 
 const appConfig = useAppConfig()
 const t = useT()
+const locale = useLocale()
 
 const birthYear = computed(() => appConfig.component.stats.birthYear)
 const showTuning = ref(false)
@@ -37,7 +38,7 @@ const listGrouped = computed(() => {
 const yearlyWordCount = computed(() =>
 	mapValues(Object.fromEntries(listGrouped.value), (articles) => {
 		const total = sumBy(articles, a => a.readingTime?.words ?? 0)
-		return formatNumber(total)
+		return formatNumber(total, locale.value)
 	}),
 )
 

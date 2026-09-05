@@ -40,7 +40,7 @@ const locale = useLocale()
 
 			<span v-if="readingTime?.words" class="article-words">
 				<Icon name="tabler:pilcrow" />
-				{{ formatNumber(readingTime?.words) }}{{ t('字', ' words') }}
+				{{ formatNumber(readingTime?.words, locale) }}{{ t('字', ' words') }}
 			</span>
 		</div>
 	</article>

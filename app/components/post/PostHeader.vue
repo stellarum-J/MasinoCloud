@@ -54,7 +54,7 @@ const { copy, copied } = useCopy(shareText)
 
 			<span>
 				<Icon name="tabler:pilcrow" />
-				{{ formatNumber(readingTime?.words) }}{{ t(' 字', ' words') }}
+				{{ formatNumber(readingTime?.words, locale) }}{{ t(' 字', ' words') }}
 			</span>
 		</div>
 	</div>

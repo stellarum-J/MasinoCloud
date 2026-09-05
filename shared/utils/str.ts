@@ -9,14 +9,20 @@ const promptLanguageMap: Record<string, string> = {
 	'PS': 'powershell',
 }
 
-export function formatNumber(num?: number) {
+export function formatNumber(num?: number, locale: 'zh' | 'en' = 'zh') {
 	if (typeof num !== 'number')
 		return ''
-	const intervals = [
-		{ label: '万亿', threshold: 1e12 },
-		{ label: '亿', threshold: 1e8 },
-		{ label: '万', threshold: 1e4 },
-	]
+	const intervals = locale === 'en'
+		? [
+				{ label: 'T', threshold: 1e12 },
+				{ label: 'B', threshold: 1e9 },
+				{ label: 'K', threshold: 1e3 },
+			]
+		: [
+				{ label: '万亿', threshold: 1e12 },
+				{ label: '亿', threshold: 1e8 },
+				{ label: '万', threshold: 1e4 },
+			]
 	for (const interval of intervals) {
 		if (num >= interval.threshold)
 			return `${(num / interval.threshold).toFixed(2)}${interval.label}`
