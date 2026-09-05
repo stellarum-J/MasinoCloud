@@ -5,5 +5,5 @@
 	<WidgetCommGroup />
 </template>
 
-<PageIndex lang="en" />
+<PageHome lang="en" />
 </template>
