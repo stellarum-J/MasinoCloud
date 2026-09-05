@@ -231,7 +231,14 @@ ${packageJson.homepage}
 				if (entry.isFile() && entry.name.endsWith('.md'))
 					enRoutes.push(`/en/${entry.name.slice(0, -3)}`)
 			}
-			ctx.routes.push(...new Set(enRoutes))
+			// 本版本 ctx.routes 为 Set（用 add；兼容数组形态）
+			if (typeof ctx.routes.add === 'function') {
+				for (const route of enRoutes)
+					ctx.routes.add(route)
+			}
+			else if (Array.isArray(ctx.routes)) {
+				ctx.routes.push(...new Set(enRoutes))
+			}
 		},
 	},
 
