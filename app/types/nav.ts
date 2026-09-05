@@ -1,11 +1,13 @@
+export type NavText = string | { zh: string, en: string }
+
 export interface NavItem {
 	icon: string
-	text: string
+	text: NavText
 	url: string
 	external?: boolean
 }
 
 export type Nav = {
-	title: string
+	title: NavText
 	items: NavItem[]
 }[]

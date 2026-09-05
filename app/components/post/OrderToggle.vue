@@ -10,6 +10,8 @@ const props = defineProps<{
 }>()
 
 const appConfig = useAppConfig()
+const t = useT()
+const locale = useLocale()
 const orderMap = computed(() => appConfig.article.order)
 // 配置文件中允许升序时，且未明确禁用升序时，允许升序
 const allowAscending = computed(() => appConfig.pagination.allowAscending ? !props.disableAscending : props.enableAscending)
@@ -37,7 +39,7 @@ function toggleDirection() {
 	<ZDropdown trigger="focusin" tabindex="0">
 		<button :disabled="!categories">
 			<Icon :name="getCategoryIcon(category)" />
-			<span class="order-text">{{ category ?? '全部分类' }}</span>
+			<span class="order-text">{{ category ? getCategoryLabel(category, locale) : t('全部分类', 'All categories') }}</span>
 		</button>
 
 		<template #content="{ hide }">
@@ -48,7 +50,7 @@ function toggleDirection() {
 
 			<button v-for="item in categories" :key="item" :class="{ active: item === category }" @click="hide(), category = item">
 				<Icon :name="getCategoryIcon(item)" />
-				<span>{{ item }}</span>
+				<span>{{ getCategoryLabel(item, locale) }}</span>
 			</button>
 		</template>
 	</ZDropdown>
@@ -60,7 +62,7 @@ function toggleDirection() {
 
 		<button @click="toggleOrder">
 			<Icon v-if="!allowAscending" name="tabler:sort-descending" />
-			<span class="order-text">{{ orderMap[sortOrder] || sortOrder }}</span>
+			<span class="order-text">{{ navText(orderMap[sortOrder] || sortOrder, locale) }}</span>
 		</button>
 	</span>
 </div>

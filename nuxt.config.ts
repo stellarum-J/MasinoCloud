@@ -76,8 +76,8 @@ export default defineNuxtConfig({
 			// 修复部分平台会在文章路径后添加 `/`，导致闪现 404 错误
 			// https://github.com/nuxt/content/issues/2378
 			autoSubfolderIndex: CLOUDFLARE_PAGES || GITHUB_ACTIONS || NETLIFY ? false : undefined,
-			// 英文版首页（英文文章页由 content 集合自动预渲染）
-			routes: ['/en'],
+			// 英文版页面（实页 + 英文文章由 content 集合自动预渲染）
+			routes: ['/en', '/en/link', '/en/archive'],
 		},
 	},
 

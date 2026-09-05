@@ -3,6 +3,8 @@ import type { ArticleProps } from '~/types/article'
 
 const props = defineProps<{ useUpdated?: boolean } & ArticleProps>()
 const showAllDate = isTimeDiffSignificant(props.date, props.updated)
+const t = useT()
+const locale = useLocale()
 </script>
 
 <template>
@@ -33,12 +35,12 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 
 			<span v-if="categories" :style="{ color: getCategoryColor(categories[0]) }">
 				<Icon :name="getCategoryIcon(categories[0])" />
-				{{ categories[0] }}
+				{{ getCategoryLabel(categories[0], locale) }}
 			</span>
 
 			<span v-if="readingTime?.words" class="article-words">
 				<Icon name="tabler:pilcrow" />
-				{{ formatNumber(readingTime?.words) }}字
+				{{ formatNumber(readingTime?.words) }}{{ t('字', ' words') }}
 			</span>
 		</div>
 	</article>

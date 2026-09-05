@@ -5,6 +5,8 @@ const searchStore = useSearchStore()
 
 const { text } = useTextSelection()
 const debouncedSelection = refDebounced(text)
+const t = useT()
+const locale = useLocale()
 </script>
 
 <template>
@@ -21,20 +23,20 @@ const debouncedSelection = refDebounced(text)
 	<nav class="sidebar-nav scrollcheck-y">
 		<div class="search-btn sidebar-nav-item gradient-card" @click="layoutStore.toggle('search')">
 			<Icon name="tabler:search" />
-			<span class="nav-text">{{ debouncedSelection || searchStore.word || '搜索' }}</span>
+			<span class="nav-text">{{ debouncedSelection || searchStore.word || t('搜索', 'Search') }}</span>
 			<Key class="keycut" code="K" cmd prevent @press="layoutStore.toggle('search')" />
 		</div>
 
 		<template v-for="(group, groupIndex) in appConfig.nav" :key="groupIndex">
 			<h3 v-if="group.title">
-				{{ group.title }}
+				{{ navText(group.title, locale) }}
 			</h3>
 
 			<menu>
 				<li v-for="(item, itemIndex) in group.items" :key="itemIndex">
 					<UtilLink :to="item.url" class="sidebar-nav-item">
 						<Icon :name="item.icon" />
-						<span class="nav-text">{{ item.text }}</span>
+						<span class="nav-text">{{ navText(item.text, locale) }}</span>
 						<Icon v-if="isExtLink(item.url)" class="external-tip" name="tabler:arrow-up-right" />
 					</UtilLink>
 				</li>

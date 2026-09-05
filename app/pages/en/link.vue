@@ -1,3 +1,3 @@
 <template>
-<PageLink lang="zh" />
+<PageLink lang="en" />
 </template>

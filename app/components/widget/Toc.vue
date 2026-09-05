@@ -9,6 +9,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate({
 
 const { toc } = useArticle()
 const scrollableEl = useTemplateRef('toc')
+const t = useT()
 const { tocOffsets, activeHeadingId } = useToc(toc, computed(() => scrollableEl.value?.body))
 
 function hasHeading(tocTree: TocLink, heading?: string): boolean {
@@ -19,17 +20,17 @@ function hasHeading(tocTree: TocLink, heading?: string): boolean {
 <template>
 <BlogWidget
 	ref="toc"
-	title="文章目录"
+	:title="t('文章目录', 'On this page')"
 	shrink
 	:style="{ minHeight: `clamp(4rem, ${tocOffsets.length}rem, 20rem)` }"
 >
 	<template #action>
 		<!-- use <a> for anchor -->
-		<a href="#main-content" aria-label="返回开头">
+		<a href="#main-content" :aria-label="t('返回开头', 'Back to top')">
 			<Icon name="tabler:arrow-bar-to-up" />
 		</a>
 
-		<a href="#twikoo" aria-label="评论区">
+		<a href="#twikoo" :aria-label="t('评论区', 'Comments')">
 			<Icon name="tabler:message-dots" />
 		</a>
 	</template>

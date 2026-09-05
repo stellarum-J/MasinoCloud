@@ -2,6 +2,7 @@
 import type { TippyComponent } from 'vue-tippy'
 
 const appConfig = useAppConfig()
+const t = useT()
 
 const commentEl = useTemplateRef('comment')
 const popoverEl = useTemplateRef<TippyComponent>('popover')
@@ -63,7 +64,7 @@ onMounted(() => {
 <template>
 <section ref="comment" class="z-comment">
 	<h3 class="text-creative">
-		评论区
+		{{ t('评论区', 'Comments') }}
 	</h3>
 
 	<!-- interactive 默认会把气泡移动到 triggerTarget 的父元素上 -->
@@ -105,7 +106,7 @@ onMounted(() => {
 	</Tooltip>
 
 	<div id="twikoo">
-		<p>评论加载中...</p>
+		<p>{{ t('评论加载中...', 'Loading comments...') }}</p>
 	</div>
 </section>
 </template>

@@ -1,17 +1,18 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
+const locale = useLocale()
 </script>
 
 <template>
 <footer class="blog-footer">
 	<nav class="footer-nav">
 		<div v-for="(group, groupIndex) in appConfig.footer.nav" :key="groupIndex">
-			<hgroup class="text-creative" v-text="group.title" />
+			<hgroup class="text-creative" v-text="navText(group.title, locale)" />
 			<menu>
 				<li v-for="(item, itemIndex) in group.items" :key="itemIndex">
 					<UtilLink :to="item.url">
 						<Icon :name="item.icon" />
-						<span class="nav-text">{{ item.text }}</span>
+						<span class="nav-text">{{ navText(item.text, locale) }}</span>
 					</UtilLink>
 				</li>
 			</menu>

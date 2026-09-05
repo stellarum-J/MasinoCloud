@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
 const colorMode = useColorMode()
+const t = useT()
+const enTips = { light: 'Light', system: 'System', dark: 'Dark' } as Record<string, string>
 </script>
 
 <template>
@@ -8,8 +10,8 @@ const colorMode = useColorMode()
 	<button
 		v-for="(themeData, themeName) in appConfig.themes"
 		:key="themeName"
-		v-tip="themeData.tip"
-		:aria-label="themeData.tip"
+		v-tip="t(themeData.tip, enTips[themeName] ?? themeData.tip)"
+		:aria-label="t(themeData.tip, enTips[themeName] ?? themeData.tip)"
 		:class="{ active: colorMode.preference === themeName }"
 		@click="colorMode.preference = themeName"
 	>

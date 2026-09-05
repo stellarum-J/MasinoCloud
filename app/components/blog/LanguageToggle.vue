@@ -5,17 +5,18 @@ const locale = computed<'zh' | 'en'>(() =>
 	route.path === '/en' || route.path.startsWith('/en/') ? 'en' : 'zh',
 )
 
-/** 计算目标语言的对应页面路径（文章 ↔ 对译文章；其余页面 ↔ 对应语言首页） */
+/** 计算目标语言的对应页面路径：文章与镜像页（link/archive/theme）成对，其余页面回语言首页 */
 function counterpart(target: 'zh' | 'en') {
-	// 文章路径形如 /2026/foo 或 /en/2026/foo，存在镜像；其余页面切换语言时回到语言首页
+	const mirrorable = /^\/(\d{4}\/|link\/?$|archive\/?$|theme\/?$)/
 	if (target === 'en') {
 		if (route.path === '/')
 			return '/en'
-		return /^\d{4}\//.test(route.path.slice(1)) ? `/en${route.path}` : '/en'
+		return mirrorable.test(route.path) ? `/en${route.path}` : '/en'
 	}
 	if (route.path === '/en')
 		return '/'
-	return /^en\/\d{4}\//.test(route.path.slice(1)) ? route.path.replace(/^\/en/, '') : '/'
+	const enPath = route.path.replace(/^\/en/, '')
+	return mirrorable.test(enPath) ? enPath : '/'
 }
 
 function switchTo(target: 'zh' | 'en') {

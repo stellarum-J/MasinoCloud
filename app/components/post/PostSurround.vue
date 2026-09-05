@@ -2,6 +2,7 @@
 import type { ArticleProps } from '~/types/article'
 
 const route = useRoute()
+const t = useT()
 
 const { data: surrounds } = await useAsyncData(
 	`surround:${route.path}`,
@@ -38,11 +39,11 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{
 <div v-if="prev || next" class="surround-post" dir="ltr">
 	<ReuseTemplate
 		:post="next" icon="zi:solar-rewind-back-bold-duotone"
-		fallback-icon="line-md:coffee-twotone-loop" fallback-text="新故事即将发生"
+		fallback-icon="line-md:coffee-twotone-loop" :fallback-text="t('新故事即将发生', 'New stories coming soon')"
 	/>
 	<ReuseTemplate
 		:post="prev" icon="zi:solar-rewind-forward-bold-duotone"
-		fallback-icon="line-md:construction-twotone" fallback-text="已抵达博客尽头"
+		fallback-icon="line-md:construction-twotone" :fallback-text="t('已抵达博客尽头', 'You have reached the end of the blog')"
 		align-end
 	/>
 </div>

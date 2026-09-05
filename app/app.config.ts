@@ -57,21 +57,21 @@ export default defineAppConfig({
 		copyright: `© ${Temporal.Now.plainDateISO().year.toString()} ${blogConfig.author.name}`,
 		/** 侧边栏底部图标导航 */
 		iconNav: [
-			{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
+			{ icon: 'tabler:rss', text: { zh: 'Atom订阅', en: 'Atom feed' }, url: '/atom.xml' },
 		] satisfies NavItem[],
 		/** 页脚站点地图 */
 		nav: [
 			{
-				title: '探索',
+				title: { zh: '探索', en: 'Explore' },
 				items: [
-					{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
+					{ icon: 'tabler:rss', text: { zh: 'Atom订阅', en: 'Atom feed' }, url: '/atom.xml' },
 				],
 			},
 			{
-				title: '信息',
+				title: { zh: '信息', en: 'Info' },
 				items: [
-					{ icon: 'simple-icons:nuxt', text: `主题: ${pascalCase(name)} ${version}`, url: 'https://github.com/L33Z22L11/blog-v3' },
-					{ icon: 'tabler:color-swatch', text: '主题和组件文档', url: '/theme' },
+					{ icon: 'simple-icons:nuxt', text: { zh: `主题: ${pascalCase(name)} ${version}`, en: `Theme: ${pascalCase(name)} ${version}` }, url: 'https://github.com/L33Z22L11/blog-v3' },
+					{ icon: 'tabler:color-swatch', text: { zh: '主题和组件文档', en: 'Theme & component docs' }, url: '/theme' },
 				],
 			},
 		] satisfies Nav,
@@ -99,9 +99,9 @@ export default defineAppConfig({
 		{
 			title: '',
 			items: [
-				{ icon: 'tabler:files', text: '文章', url: '/' },
-				{ icon: 'tabler:link', text: '友链', url: '/link' },
-				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
+				{ icon: 'tabler:files', text: { zh: '文章', en: 'Posts' }, url: '/' },
+				{ icon: 'tabler:link', text: { zh: '友链', en: 'Links' }, url: '/link' },
+				{ icon: 'tabler:archive', text: { zh: '归档', en: 'Archive' }, url: '/archive' },
 			],
 		},
 	] satisfies Nav,

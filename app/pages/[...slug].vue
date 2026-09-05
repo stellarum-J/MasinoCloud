@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
+const t = useT()
 
 const isEn = computed(() => route.path === '/en' || route.path.startsWith('/en/'))
 
@@ -69,7 +70,7 @@ else {
 <ZError
 	v-else
 	icon="line-md:document-delete-twotone"
-	title="内容为空或页面不存在"
+	:title="t('内容为空或页面不存在', 'Content is empty or the page does not exist')"
 />
 </template>
 
