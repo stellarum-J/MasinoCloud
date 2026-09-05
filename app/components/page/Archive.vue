@@ -11,10 +11,6 @@ const props = defineProps<{
 const appConfig = useAppConfig()
 const t = useT()
 
-useSeoMeta({
-	title: computed(() => t('归档', 'Archive')),
-	description: computed(() => `${appConfig.title}${t('的所有文章归档。', ' — all posts, archived.')}`),
-})
 const birthYear = computed(() => appConfig.component.stats.birthYear)
 const showTuning = ref(false)
 const spacing = ref(0)

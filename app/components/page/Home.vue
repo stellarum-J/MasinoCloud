@@ -8,12 +8,6 @@ const props = defineProps<{
 const appConfig = useAppConfig()
 const t = useT()
 
-useSeoMeta({
-	description: appConfig.description,
-	ogImage: appConfig.author.avatar,
-	title: () => (page.value > 1 ? t(`第${page.value}页`, `Page ${page.value}`) : ''),
-})
-
 // 中英内容树不同，缓存键需区分
 const stemPrefix = computed(() => (props.lang === 'en' ? 'en/posts/%' : 'posts/%'))
 const { data: listRaw } = await useAsyncData(
