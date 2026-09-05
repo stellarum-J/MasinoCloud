@@ -5,6 +5,8 @@ defineOptions({ inheritAttrs: false })
 const props = defineProps<ArticleProps>()
 
 const appConfig = useAppConfig()
+const t = useT()
+const locale = useLocale()
 
 const coverFilter = computed(() => props.meta?.coverFilter || (props.meta?.coverDim && 'brightness(0.75)') || undefined)
 
@@ -23,7 +25,7 @@ const { copy, copied } = useCopy(shareText)
 			<Icon v-show="false" name="tabler:check" />
 			<ZButton
 				:icon="copied ? 'tabler:check' : 'tabler:share'"
-				text="文字分享"
+				:text="t('文字分享', 'Copy share text')"
 				@click="copy()"
 			/>
 		</div>
@@ -32,7 +34,7 @@ const { copy, copied } = useCopy(shareText)
 			<UtilDate
 				v-if="date"
 				v-tip
-				:tip-transform="d => `创建于${d}`"
+				:tip-transform="d => t(`创建于${d}`, `Created at ${d}`)"
 				:date
 				icon="tabler:pencil-minus"
 			/>
@@ -40,19 +42,19 @@ const { copy, copied } = useCopy(shareText)
 			<UtilDate
 				v-if="updated && isTimeDiffSignificant(date, updated, 1)"
 				v-tip
-				:tip-transform="d => `修改于${d}`"
+				:tip-transform="d => t(`修改于${d}`, `Updated at ${d}`)"
 				:date="updated"
 				icon="tabler:clock-edit"
 			/>
 
 			<span v-if="categories">
 				<Icon :name="getCategoryIcon(categories[0])" />
-				{{ categories[0] }}
+				{{ getCategoryLabel(categories[0], locale) }}
 			</span>
 
 			<span>
 				<Icon name="tabler:pilcrow" />
-				{{ formatNumber(readingTime?.words) }} 字
+				{{ formatNumber(readingTime?.words) }}{{ t(' 字', ' words') }}
 			</span>
 		</div>
 	</div>
