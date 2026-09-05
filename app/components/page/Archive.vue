@@ -56,11 +56,6 @@ function getArticleYear(article: ArticleProps) {
 </script>
 
 <template>
-<template #aside>
-	<WidgetBlogStats />
-	<WidgetBlogLog />
-</template>
-
 <div class="archive proper-height">
 	<PostOrderToggle
 		v-model:is-ascending="isAscending"

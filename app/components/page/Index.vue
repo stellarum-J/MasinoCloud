@@ -42,12 +42,6 @@ const { data: previewCount } = await useAsyncData(
 </script>
 
 <template>
-<template #aside>
-	<WidgetBlogStats />
-	<WidgetBlogTech />
-	<WidgetCommGroup />
-</template>
-
 <BlogHeader class="mobile-only" to="/" tag="h1" />
 
 <UtilHydrateSafe>
