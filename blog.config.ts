@@ -20,7 +20,7 @@ const basicConfig = {
 	language: 'zh-CN',
 	timeEstablished: '2026-09-04',
 	timeZone: 'Asia/Shanghai',
-	url: 'http://8.140.208.196/',
+	url: 'http://masino.tech/',
 	defaultCategory: '未分类',
 }
 
@@ -81,7 +81,7 @@ const blogConfig = {
 
 	/** Twikoo 评论系统（后端为自建 Docker，Nginx 反代于 /twikoo/） */
 	twikoo: {
-		envId: 'http://8.140.208.196/twikoo/',
+		envId: 'http://masino.tech/twikoo/',
 		preload: '',
 	},
 }
