@@ -20,7 +20,8 @@ const basicConfig = {
 	language: 'zh-CN',
 	timeEstablished: '2026-09-04',
 	timeZone: 'Asia/Shanghai',
-	url: 'http://masino.tech/',
+	// 备案审核期间临时回退 IP 访问（域名停服，通过后切回 masino.tech 并升级 https）
+	url: 'http://8.140.208.196/',
 	defaultCategory: '未分类',
 }
 
@@ -81,7 +82,7 @@ const blogConfig = {
 
 	/** Twikoo 评论系统（后端为自建 Docker，Nginx 反代于 /twikoo/） */
 	twikoo: {
-		envId: 'http://masino.tech/twikoo/',
+		envId: 'http://8.140.208.196/twikoo/',
 		preload: '',
 	},
 }

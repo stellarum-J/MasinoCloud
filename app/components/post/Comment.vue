@@ -3,6 +3,7 @@ import type { TippyComponent } from 'vue-tippy'
 
 const appConfig = useAppConfig()
 const t = useT()
+const locale = useLocale()
 
 const commentEl = useTemplateRef('comment')
 const popoverEl = useTemplateRef<TippyComponent>('popover')
@@ -57,6 +58,8 @@ onMounted(() => {
 		envId: appConfig.twikoo?.envId,
 		// twikoo 会把挂载后的元素变为 #twikoo
 		el: '#twikoo',
+		// 评论组件界面语言（Twikoo 内置 zh-CN/en-US 等语言表）
+		lang: locale.value === 'en' ? 'en-US' : 'zh-CN',
 	})
 })
 </script>
