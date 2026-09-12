@@ -76,9 +76,19 @@ const blogConfig = {
 
 	/** 向 <head> 中添加脚本 */
 	scripts: [
-		// Twikoo 评论客户端（1.7.20，同源自托管于 public/，与后端版本保持一致）
+		// Twikoo 评论客户端（1.7.20，同源自托管于 public/，与后端版本保持一致；上游改用 CDN，勿跟）
 		{ src: '/twikoo.all.min.js' },
 	],
+
+	/** 文章统计配置 */
+	stats: {
+		/**
+		 * 统计范围，匹配 content 下不含扩展名的路径（stem）；空数组统计全部内容
+		 * 使用 SQL LIKE 语法：% 匹配任意长度字符，_ 匹配单个字符
+		 * 多个范围取并集，如 ['posts/%', 'book/%']
+		 */
+		includePaths: [] as string[],
+	},
 
 	/** Twikoo 评论系统（后端为自建 Docker，Nginx 反代于 /twikoo/） */
 	twikoo: {

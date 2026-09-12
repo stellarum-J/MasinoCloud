@@ -2,6 +2,7 @@
 import { UtilDate } from '#components'
 
 const runtimeConfig = useRuntimeConfig()
+const appConfig = useAppConfig()
 const t = useT()
 const locale = useLocale()
 
@@ -33,7 +34,10 @@ const blogStats = [{
 		tipPrefix: locale.value === 'en' ? 'Built at' : '构建于',
 	}),
 }, {
-	label: t('总字数', 'Total words'),
+	label: t(
+		appConfig.stats.includePaths.length ? '文章字数' : '总字数',
+		appConfig.stats.includePaths.length ? 'Post words' : 'Total words',
+	),
 	value: computed(() => formatNumber(stats.value?.total?.words, locale.value) || '--'),
 	tip: yearlyTip,
 }]

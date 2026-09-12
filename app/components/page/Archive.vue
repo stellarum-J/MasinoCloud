@@ -83,7 +83,7 @@ function getArticleYear(article: ArticleProps) {
 				{{ year }}
 			</h2>
 
-			<div class="archive-age">
+			<div v-if="birthYear" class="archive-age">
 				<span>{{ Number(year) - birthYear }}</span>
 				<span class="age-label">{{ t('岁', 'yrs') }}</span>
 			</div>
